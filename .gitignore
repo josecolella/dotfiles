@@ -1,0 +1,20 @@
+# Never commit secrets or machine-local overrides to this PUBLIC repo.
+
+# Machine-local / work-specific overrides
+*.local
+.zshrc.local
+.gitconfig.local
+
+# Secrets that sometimes live next to tracked config
+**/hosts.yml          # gh OAuth tokens
+.ssh/id_*             # private keys
+.ssh/known_hosts
+**/.aws/
+
+# Shell history / runtime state
+.histdb/
+.zsh_history
+.zsh_sessions/
+
+# OS cruft
+.DS_Store

@@ -1,0 +1,13 @@
+# ~/.zshrc.local — machine-local & work-specific shell config (NOT tracked in git).
+# bootstrap.sh copies this to ~/.zshrc.local if it doesn't already exist.
+# Put anything here that is private, work-specific, or unique to this machine:
+# work env bootstraps, private aliases, employer AWS profiles, project PATHs, etc.
+
+# --- Source a separate work bootstrap, if you have one ---
+# [ -f ~/.work.sh ] && source ~/.work.sh
+
+# --- Project-specific PATH (example) ---
+# export PATH="/opt/homebrew/opt/<formula>/bin:$PATH"
+
+# --- Private aliases ---
+# alias deploy="..."

@@ -1,0 +1,11 @@
+# ~/.gitconfig.local — personal identity & signing (NOT tracked in git).
+# bootstrap.sh copies this to ~/.gitconfig.local if it doesn't already exist.
+[user]
+	name = Your Name
+	email = you@example.com
+	# SSH commit signing key (matches gpg.format = ssh in the tracked .gitconfig)
+	signingkey = ~/.ssh/id_ed25519.pub
+
+# Optional: keep `git maintenance` running on your active repos.
+# [maintenance]
+#	repo = ~/workspace/your-repo

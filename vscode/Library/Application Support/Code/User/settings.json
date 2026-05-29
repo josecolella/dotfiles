@@ -1,0 +1,97 @@
+{
+  "typescript.updateImportsOnPaste.enabled": false,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    "node_modules/": true,
+    "*/node_modules/": true,
+    "**/node_modules/": true
+  },
+  "prettier.printWidth": 120,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "eslint.validate": ["react", "html", "javascript", "typescript"],
+  "editor.fontFamily": "Monaspace Neon Var",
+  "terminal.integrated.fontFamily": "Monaspace Neon Var",
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "[ruby]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.rulers": [120],
+    "editor.semanticHighlighting.enabled": true,
+    "editor.defaultFormatter": "Blinknlights.fuzzy-ruby-server",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.terminalLinksHandler": "github",
+  "files.autoSave": "afterDelay",
+  "explorer.confirmDragAndDrop": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+  "workbench.startupEditor": "none",
+  "debug.console.fontSize": 14,
+  "explorer.confirmDelete": false,
+  "datadog.telemetry.setup.enableTelemetry": "enabled",
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
+  "typescript.preferGoToSourceDefinition": true,
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.enableRegionDiagnostics": true,
+  "typescript.tsserver.maxTsServerMemory": 24576,
+  "typescript.tsserver.log": "off",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "editor.tabSize": 2,
+  "terminal.integrated.fontWeight": "400",
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.scrollback": 8000,
+  "references.preferredLocation": "view",
+  "window.density.editorTabHeight": "default",
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.multiCursorLimit": 90000,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "docker.extension.enableComposeLanguageServer": false,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "claudeCode.preferredLocation": "panel",
+  "security.workspace.trust.untrustedFiles": "open",
+  "update.showReleaseNotes": false,
+  "datadog.codeSecurity.notification.suppressOnboarding": true,
+  "security.promptForLocalFileProtocolHandling": false
+}

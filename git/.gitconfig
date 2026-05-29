@@ -1,0 +1,18 @@
+# ~/.gitconfig — managed by github.com/josecolella/dotfiles
+# Personal identity (name, email, signing key) lives in ~/.gitconfig.local,
+# which is NOT tracked. See templates/gitconfig.local.example.
+[include]
+	path = ~/.gitconfig.local
+[core]
+	editor = code --wait
+[init]
+	defaultBranch = main
+[push]
+	default = simple
+	autoSetupRemote = true
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[credential]
+	helper = osxkeychain
