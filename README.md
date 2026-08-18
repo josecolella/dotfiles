@@ -60,10 +60,18 @@ any colliding files to `~/.dotfiles-backup-<timestamp>/`, then stows everything.
 brew install stow
 cd ~/dotfiles
 stow -nv zsh tmux git        # dry run — preview the symlinks
-stow zsh tmux git nvim zed gh mise ssh starship vscode
+stow zsh tmux git nvim zed gh mise ssh starship vscode claude
 ```
 
 Remove a package with `stow -D <package>`.
+
+The `claude` package ships Claude Code hooks into `~/.claude/hooks/`. That directory
+usually already holds real files, so adopt them on first install:
+
+```sh
+stow --adopt claude   # replaces the repo copy with what is already on disk
+git diff              # review, then keep or discard the adopted version
+```
 
 ## 🔐 Work / personal split
 
