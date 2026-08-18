@@ -32,18 +32,26 @@ fi
 CMD=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty')
 [[ -z "$CMD" ]] && exit 0
 
+# Prose that *quotes* a gh invocation in backticks -- a commit message, or a comment in a
+# script that edits this hook -- is not itself posting anything. Detection therefore runs
+# against the command with backticked spans stripped, while the signature check below
+# still sees the whole thing. Legacy backtick command substitution is the deliberate
+# trade-off: it is rare next to how often the quoted form shows up in prose, and the
+# $(...) form is unaffected.
+CMD_CODE=$(printf '%s' "$CMD" | sed 's/`[^`]*`//g')
+
 # Only gh subcommands that publish prose, and only when a body is actually supplied
 # (so `gh pr edit --add-label` and a bare `gh pr review --approve` stay unaffected).
 posts_prose() {
-  printf '%s' "$CMD" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+(pr|issue)[[:space:]]+(create|comment|review|edit)' && return 0
-  printf '%s' "$CMD" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+release[[:space:]]+(create|edit)' && return 0
-  printf '%s' "$CMD" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+api' &&
-    printf '%s' "$CMD" | grep -qE '(^|[^[:alnum:]_-])(body|comments)=' && return 0
+  printf '%s' "$CMD_CODE" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+(pr|issue)[[:space:]]+(create|comment|review|edit)' && return 0
+  printf '%s' "$CMD_CODE" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+release[[:space:]]+(create|edit)' && return 0
+  printf '%s' "$CMD_CODE" | grep -qE '(^|[^[:alnum:]_-])gh[[:space:]]+api' &&
+    printf '%s' "$CMD_CODE" | grep -qE '(^|[^[:alnum:]_-])(body|comments)=' && return 0
   return 1
 }
 
 has_body() {
-  printf '%s' "$CMD" | grep -qE -- '(--body([[:space:]]|=)|--body-file([[:space:]]|=)|-b[[:space:]]|-F[[:space:]]|-f[[:space:]]|--field|--raw-field|body=)'
+  printf '%s' "$CMD_CODE" | grep -qE -- '(--body([[:space:]]|=)|--body-file([[:space:]]|=)|-b[[:space:]]|-F[[:space:]]|-f[[:space:]]|--field|--raw-field|body=)'
 }
 
 posts_prose || exit 0
@@ -64,14 +72,14 @@ while IFS= read -r p; do
   [[ "$p" == *=* || "$p" == "-" ]] && continue
   # prose that merely mentions these flags yields junk tokens; keep only plausible paths
   p="${p%%[\`,;:)]*}"
-  [[ "$p" == */* || "$p" == *.* ]] || continue
+  [[ "$p" == */* && ${#p} -gt 1 && "$p" != *[\<\>]* ]] || continue
   if [[ -f "$p" ]]; then
     TEXT+=$(cat "$p")
     READ_ANY=1
   else
     UNREADABLE+="$p "
   fi
-done < <(printf '%s' "$CMD" |
+done < <(printf '%s' "$CMD_CODE" |
   grep -oE -- '(--body-file[= ]|-F[[:space:]]+|-f[[:space:]]+|@)[^[:space:]"'"'"']+' |
   sed -E 's/^(--body-file[= ]|-F[[:space:]]+|-f[[:space:]]+|@)//')
 
